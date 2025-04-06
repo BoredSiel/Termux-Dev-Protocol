@@ -1,1 +1,91 @@
-# HTML rituals
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Termux Dev Protocol</title>
+  <style>
+    body {
+      background: #0d0d0d;
+      color: #e0e0e0;
+      font-family: 'Courier New', monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 2rem;
+      min-height: 100vh;
+    }
+    h1 {
+      color: #00ffae;
+      text-shadow: 0 0 10px #00ffae;
+      font-size: 2rem;
+      margin-bottom: 0.5em;
+    }
+    p {
+      color: #aaa;
+      font-size: 1rem;
+      max-width: 600px;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      margin: 0.5rem 0;
+    }
+    a {
+      color: #00ffae;
+      text-decoration: none;
+      border-bottom: 1px dashed #00ffae;
+      transition: 0.2s ease;
+    }
+    a:hover {
+      color: gold;
+      border-color: gold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Termux Dev Protocol</h1>
+  <p>Autonomous development protocol forged in the terminal. Click any artifact to access its ritual.</p>
+  <div id="links"></div>
+
+  <script>
+    const structure = {
+      "docs": ["shortcuts.md"],
+      "examples": ["xenith_protocol.md"],
+      "deploy": ["gh_pages.sh"],
+      "screenshots": ["README.md"],
+      "html": ["ritual.html", "hermetic.html", "anomaly.html"]
+    };
+
+    const container = document.getElementById("links");
+
+    for (const folder in structure) {
+      const section = document.createElement("section");
+      const title = document.createElement("h2");
+      title.textContent = folder.toUpperCase();
+      title.style.color = "gold";
+      title.style.fontSize = "1rem";
+      section.appendChild(title);
+
+      const list = document.createElement("ul");
+
+      structure[folder].forEach(file => {
+        const li = document.createElement("li");
+        const link = document.createElement("a");
+        link.href = `${folder}/${file}`;
+        link.textContent = file;
+        li.appendChild(link);
+        list.appendChild(li);
+      });
+
+      section.appendChild(list);
+      container.appendChild(section);
+    }
+  </script>
+</body>
+</html># HTML rituals
